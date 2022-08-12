@@ -1,0 +1,87 @@
+﻿@page
+@model RRMemberRegister.Pages.member.DeleteModel
+
+@{
+    ViewData["Title"] = "Radera";
+}
+
+@if (Model.Member != null)
+{
+    <div class="row">
+        <div className="cols-sm-12">
+            <h1>Radera medlem @Model.Member.Namn</h1>
+        </div>
+    </div>
+    <br />
+
+    <div>
+        @if (Model.DeleteError)
+        {
+            <div class="row">
+                <div class="cols-sm-12 alert alert-danger" role="alert">Det gick inte radera medlemmen</div>
+            </div>
+        }
+
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Namn)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Namn)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Adress)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Adress)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Postnummer)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Postnummer)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Postort)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Postort)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Skapatdatumasstring)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Skapatdatumasstring)
+            </dd>
+        </dl>
+
+        <form method="post">
+            <input type="hidden" asp-for="Member.Id" />
+            <input type="submit" value="Radera" class="btn btn-danger" /> 
+            <a asp-page="./Index" class="btn btn-secondary">Tillbaka</a>
+        </form>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="cols-sm-12">
+            <h1>Radera medlem ?</h1>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="cols-sm-12">
+            <p>Hittade ingen information om medlemen</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="cols-sm-12">
+            <a asp-page="./Index">Tillbaka</a>
+        </div>
+    </div>
+
+}

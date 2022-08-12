@@ -1,0 +1,65 @@
+﻿@page
+@model RRMemberRegister.Pages.member.DetailsModel
+
+@{
+    ViewData["Title"] = "Detaljer";
+}
+
+
+@if (Model.Member != null)
+{
+    <h1>Detaljer för @Model.Member.Namn</h1>
+    <br/>
+
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Namn)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Namn)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Adress)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Adress)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Postnummer)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Postnummer)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Postort)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Postort)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Member.Skapatdatumasstring)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Member.Skapatdatumasstring)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.Member.Id" class="btn btn-primary">Ändra</a>
+        <a asp-page="./Index" class="btn btn-secondary">Tillbaka</a>
+    </div>
+}
+else
+{
+    <h1>Detaljer för ?</h1>
+    <br/>
+
+    <div>
+        <p>Hittade ingen information om medlemen</p>
+    </div>
+    <div>        
+        <a asp-page="./Index">Tillbaka</a>
+    </div>
+}

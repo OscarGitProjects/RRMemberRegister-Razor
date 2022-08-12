@@ -1,0 +1,85 @@
+﻿@page
+@model RRMemberRegister.Pages.member.IndexModel
+
+@{
+    ViewData["Title"] = "Lista medlemmar";    
+}
+
+<div class="row">
+    <div className="cols-sm-12">
+        <h1>Lista medlemmar</h1>
+    </div>
+</div>
+
+@await Html.PartialAsync("_MemberActionPartial")
+
+<div class="row">
+    <div className="cols-sm-12">
+        <a asp-page="Create">Skapa ny medlem</a>
+    </div>
+</div>
+
+@if (Model.Member?.Count > 0)
+{
+    <div class="row">
+        <div class="cols-sm-12">    
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Member[0].Namn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Member[0].Adress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Member[0].Postnummer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Member[0].Postort)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Member[0].Skapatdatumasstring)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Member)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Namn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Postnummer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Postort)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Skapatdatumasstring)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Ändra</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Detaljer</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Radera</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="cols-sm-12">
+            <p>Inga medlemmar</p>
+        </div>
+    </div>
+}

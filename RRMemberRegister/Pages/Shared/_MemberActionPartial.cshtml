@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model RRMemberRegister.Pages.member.IndexModel
+
+@{
+    string actionMessage = "";
+
+
+    if (Model.MemberAction == 1)       // 1 = created
+        actionMessage = "Har sparat uppgifter om en ny medlem";
+    else if (Model.MemberAction == 2)  // 2 = updated
+        actionMessage = "Har uppdaterat uppgifter om en medlem";
+    else if (Model.MemberAction == 3)  // 3 = deleted
+        actionMessage = "Har raderat uppgifter om en medlem";
+}
+
+@if (Model.MemberAction > 0)
+{
+    <div class="row">
+        <div class="cols-sm-12 alert alert-success" role="alert">@actionMessage</div>
+    </div>
+}

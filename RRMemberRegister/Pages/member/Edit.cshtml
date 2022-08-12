@@ -1,0 +1,95 @@
+﻿@page
+@model RRMemberRegister.Pages.member.EditModel
+
+@{
+    ViewData["Title"] = "Ändra";
+}
+
+
+
+@if (Model.Member != null)
+{
+    <div class="row">
+        <div className="cols-sm-12">
+            <h1>Uppdatera information om @Model.Member.Namn</h1>
+        </div>
+    </div>
+
+    <br />
+
+    <div>
+
+        @if (Model.UpdateError)
+        {
+            <div class="row">
+                <div class="cols-sm-12 alert alert-danger" role="alert">Det gick inte uppdatera informationen om medlemmen</div>
+            </div>
+        }
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Member.Id" />
+                    <div class="form-group">
+                        <label asp-for="Member.Fornamn" class="control-label"></label>
+                        <input asp-for="Member.Fornamn" class="form-control" />
+                        <span asp-validation-for="Member.Fornamn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Member.Efternamn" class="control-label"></label>
+                        <input asp-for="Member.Efternamn" class="form-control" />
+                        <span asp-validation-for="Member.Efternamn" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Member.Adress" class="control-label"></label>
+                        <input asp-for="Member.Adress" class="form-control" />
+                        <span asp-validation-for="Member.Adress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Member.Postnummer" class="control-label"></label>
+                        <input asp-for="Member.Postnummer" class="form-control" />
+                        <span asp-validation-for="Member.Postnummer" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Member.Postort" class="control-label"></label>
+                        <input asp-for="Member.Postort" class="form-control" />
+                        <span asp-validation-for="Member.Postort" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Spara" class="btn btn-primary" />
+                        <a asp-page="./Index" class="btn btn-secondary">Tillbaka</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="cols-sm-12">
+            <h1>Uppdatera medlem ?</h1>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="cols-sm-12">
+            <p>Hittade ingen information om medlemen</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="cols-sm-12">
+            <a asp-page="./Index">Tillbaka</a>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
